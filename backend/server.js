@@ -4,11 +4,11 @@ const dotenv = require("dotenv");
 const connect = require("./config/db");
 const morgan = require("morgan");
 
+const app = express();
+
 dotenv.config();
 
 connect();
-
-const app = express();
 
 const port = process.env.port;
 
