@@ -18,10 +18,6 @@ app.use(morgan("dev"));
 
 app.use("/api", authRoutes);
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "This is get route" });
-});
-
 app.listen(port, () => {
   console.log(`server runnig on port ${port}`.bgMagenta.white);
 });
