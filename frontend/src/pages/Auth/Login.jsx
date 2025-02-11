@@ -8,50 +8,33 @@ import "../../styles/AuthStyles.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function Register() {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/register", {
-        name,
+      await axios.post("http://localhost:8080/api/login", {
         email,
         password,
-        phone,
-        address,
       });
-      toast.success("Registration Successful");
+      toast.success("Login Successful");
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 2000);
     } catch (error) {
-      toast.error("Registration Failed");
+      toast.error("Login Failed");
     }
   };
-
   return (
     <Layout title={"Register - Ecommerce app"}>
       <div className="form-container">
         <Toaster />
         <Form onSubmit={handleSubmit}>
-          <h4 className="title">REGISTER FORM</h4>
-          <Form.Group className="mb-3" controlId="formBasicName">
-            {/* <Form.Label>Name</Form.Label> */}
-            <Form.Control
-              type="text"
-              placeholder="Enter Your Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </Form.Group>
+          <h4 className="title">LOGIN FORM</h4>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
             {/* <Form.Label>Email address</Form.Label> */}
@@ -75,35 +58,13 @@ function Register() {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPhone">
-            {/* <Form.Label>Phone</Form.Label> */}
-            <Form.Control
-              type="text"
-              placeholder="Enter Your Phone No."
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicAddress">
-            {/* <Form.Label>Address</Form.Label> */}
-            <Form.Control
-              type="text"
-              placeholder="Enter Your Address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </Form.Group>
-
           <Button variant="primary" type="submit">
-            REGISTER
+            LOGIN
           </Button>
         </Form>
       </div>
     </Layout>
   );
-}
+};
 
-export default Register;
+export default Login;
